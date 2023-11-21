@@ -32,6 +32,13 @@ defmodule Logflare.Backends.Adaptor.PostgresAdaptor do
   end
 
   @impl Logflare.Backends.Adaptor
+  def start_link(%SourceBackend{} = source_backend) do
+    GenServer.start_link(__MODULE__, source_backend,
+      name: Backends.via_source_backend(source_backend, __MODULE__)
+    )
+  end
+
+  @impl Logflare.Backends.Adaptor
   def ingest(pid, log_events), do: GenServer.call(pid, {:ingest, log_events})
 
   @impl Logflare.Backends.Adaptor
@@ -131,12 +138,6 @@ defmodule Logflare.Backends.Adaptor.PostgresAdaptor do
   defdelegate insert_log_event(source_backend, log_event), to: PgRepo
 
   # GenServer
-  def start_link(%SourceBackend{} = source_backend) do
-    GenServer.start_link(__MODULE__, source_backend,
-      name: Backends.via_source_backend(source_backend, __MODULE__)
-    )
-  end
-
   @impl GenServer
   def init(source_backend) do
     with source_id <- source_backend.source_id,

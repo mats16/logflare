@@ -4,6 +4,11 @@ defmodule Logflare.Backends.Adaptor.BigQueryAdaptor do
   @behaviour Logflare.Backends.Adaptor
 
   @impl Logflare.Backends.Adaptor
+  def start_link(_source_backend) do
+    :ignore
+  end
+
+  @impl Logflare.Backends.Adaptor
   def ingest(_id, _events) do
     raise "Unimplemented"
   end
