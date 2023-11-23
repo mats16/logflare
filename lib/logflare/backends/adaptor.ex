@@ -16,6 +16,7 @@ defmodule Logflare.Backends.Adaptor do
       case source_backend.type do
         :webhook -> __MODULE__.WebhookAdaptor
         :postgres -> __MODULE__.PostgresAdaptor
+        :bigquery -> __MODULE__.BigQueryAdaptor
       end
 
     %{
