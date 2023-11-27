@@ -201,7 +201,7 @@ defmodule Logflare.Mixfile do
       #
       # Credo is currently holding us back
       {:file_system, "~> 1.0", override: true, only: [:dev, :test]},
-      {:logflare_ex, "~> 0.2.0-dev.b339a6b8"}
+      {:logflare_ex, "~> 0.2.0-dev.082a725d"}
     ]
   end
 
