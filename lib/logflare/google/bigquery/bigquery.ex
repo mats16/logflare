@@ -30,8 +30,7 @@ defmodule Logflare.Google.BigQuery do
 
   @spec init_table!(integer(), atom, String.t(), integer(), String.t(), String.t()) :: ok_err_tup
   def init_table!(user_id, source, project_id, ttl, dataset_location, dataset_id)
-      when is_integer(user_id) and is_atom(source) and is_binary(project_id) and is_integer(ttl) and
-             is_binary(dataset_location) and is_binary(dataset_id) do
+      when is_integer(user_id) and is_atom(source) and is_binary(project_id) and is_integer(ttl) and is_binary(dataset_location) and is_binary(dataset_id) do
     case create_dataset(user_id, dataset_id, dataset_location, project_id) do
       {:ok, _} ->
         Logger.info("BigQuery dataset created: #{dataset_id}")
